@@ -18,17 +18,23 @@ Route::post('/check', function (Request $request) {
     }
 
     $litellmUrl = env('LITELLM_URL');
+    $masterKey = env('LITELLM_MASTER_KEY');
+
     try {
-        $response = Http::withToken($key)->get($litellmUrl . '/key/info');
+        $response = Http::withToken($masterKey)->get($litellmUrl . '/key/info', [
+            'key' => $key
+        ]);
     } catch (\Exception $e) {
         return back()->with('error', 'Сервер авторизации временно недоступен.');
     };
 
     if ($response->successful()) {
         $data = $response->json();
+        
+        $info = $data['info'] ?? $data;
 
-        $budget = $data['max_budget'] ?? 0;
-        $spend = $data['spend'] ?? 0;
+        $budget = $info['max_budget'] ?? 0;
+        $spend = $info['spend'] ?? 0;
         $remain = max(0, $budget - $spend);
 
         return view('info', [
@@ -36,8 +42,8 @@ Route::post('/check', function (Request $request) {
             'budget' => $budget,
             'spend' => $spend,
             'remain' => $remain,
-            'models' => $data['models'] ?? [],
-            'expires' => $data['expires'] ?? null
+            'models' => $info['models'] ?? [],
+            'expires' => $info['expires'] ?? null
         ]);
     }
 
