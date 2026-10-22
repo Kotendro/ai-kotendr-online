@@ -17,7 +17,7 @@ Route::post('/check', function (Request $request) {
         return back()->with('error', 'Пожалуйста, введите ключ.');
     }
 
-    $litellmUrl = env('LITELLM_URL', 'http://127.0.0.1:4000');
+    $litellmUrl = env('LITELLM_URL');
     try {
         $response = Http::withToken($key)->get($litellmUrl . '/key/info');
     } catch (\Exception $e) {
