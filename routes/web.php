@@ -36,14 +36,14 @@ Route::post('/check', function (Request $request) {
         $budget = $info['max_budget'] ?? 0;
         $spend = $info['spend'] ?? 0;
         $remain = max(0, $budget - $spend);
+        $last_active = $info['last_active'] ?? null;
 
         return view('info', [
-            'key' => $key,
+            'last_active' => $last_active,
             'budget' => $budget,
             'spend' => $spend,
             'remain' => $remain,
             'models' => $info['models'] ?? [],
-            'expires' => $info['expires'] ?? null
         ]);
     }
 

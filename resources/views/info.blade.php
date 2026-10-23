@@ -11,7 +11,12 @@
 <body class="bg-white text-gray-900 font-mono p-6 sm:p-12 max-w-lg mx-auto">
 
     <div class="flex justify-between items-baseline border-b border-gray-200 pb-4 mb-6">
-        <h1 class="text-2xl font-bold">Статистика ключа</h1>
+        <div>
+            <h1 class="text-2xl font-bold">Статистика ключа</h1>
+            @if($last_active)
+            <p class="text-xs text-gray-400 mt-1">Последняя активность: {{ \Carbon\Carbon::parse($last_active)->format('d.m.Y H:i') }}</p>
+            @endif
+        </div>
         <a href="{{ route('home') }}" class="text-blue-600 hover:underline">Выйти</a>
     </div>
 
@@ -19,10 +24,6 @@
         <p>Доступный остаток: <span class="font-bold text-green-600">${{ number_format($remain, 2) }}</span></p>
         <p class="text-gray-600">Общий лимит: ${{ number_format($budget, 2) }}</p>
         <p class="text-gray-600">Потрачено: ${{ number_format($spend, 2) }}</p>
-
-        @if($expires)
-        <p class="text-gray-600">Действует до: {{ \Carbon\Carbon::parse($expires)->format('d.m.Y H:i') }}</p>
-        @endif
     </div>
 
     <div class="mb-8">
