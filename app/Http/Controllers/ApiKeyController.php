@@ -12,6 +12,12 @@ class ApiKeyController extends Controller
      */
     public function index()
     {
+        $key = session('api_key');
+
+        if ($key) {
+            return redirect()->route('info');
+        }
+
         return view('index');
     }
 
@@ -21,7 +27,7 @@ class ApiKeyController extends Controller
     public function logout()
     {
         session()->flush();
-        
+
         return redirect()->route('home');
     }
 
@@ -117,7 +123,6 @@ class ApiKeyController extends Controller
                 ]);
             }
         } catch (\Exception $e) {
-            
         }
 
         return view('info', compact('last_active', 'budget', 'spend', 'remain', 'models'));
