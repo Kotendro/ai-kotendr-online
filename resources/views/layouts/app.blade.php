@@ -15,7 +15,7 @@
 
     <!-- Логотип вне основного контейнера (в левом верхнем углу) -->
     <div class="absolute top-4 left-4 sm:top-6 sm:left-8 font-bold text-gray-400 tracking-wider select-none">
-        kotendr
+        ai.kotendr
     </div>
 
     <!-- Центральный контейнер (бывший body) -->
@@ -33,11 +33,6 @@
                 @yield('header_links')
             </div>
         </header>
-
-        <!-- Навигация по странице -->
-        <div>
-            @yield('page_links')
-        </div>
 
         <!-- Основной контент страницы -->
         <main>

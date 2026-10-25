@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Вход')
+@section('title', 'API вход')
 @section('header_title', 'API вход')
 
 @section('header_links')

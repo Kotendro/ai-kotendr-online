@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Информация о ключе')
+@section('title', 'Статистика ключа')
 @section('header_title', 'Статистика ключа')
 
 @section('header_subtitle')
 @if($last_active)
-<p class="text-xs text-gray-400 mt-1">Последняя активность: {{ \Carbon\Carbon::parse($last_active)->format('d.m.Y H:i') }}</p>
+<p class="text-sm text-gray-400 mt-1">Последняя активность: {{ \Carbon\Carbon::parse($last_active)->format('d.m.Y H:i') }}</p>
 @endif
 @endsection
 
@@ -15,20 +15,30 @@
 @endsection
 
 @section('content')
-<div class="flex flex-col gap-2 mb-8 text-lg">
-    <p>Доступный остаток: <span class="font-bold text-green-600">${{ number_format($remain, 2) }}</span></p>
-    <p class="text-gray-600">Общий лимит: ${{ number_format($budget, 2) }}</p>
-    <p class="text-gray-600">Потрачено: ${{ number_format($spend, 2) }}</p>
+<div class="mb-8">
+    <p class="text-lg">
+        Доступный остаток: <span class="font-bold text-green-600">${{ number_format($remain, 2) }}</span>
+        <span class="text-sm text-gray-400 font-normal">из ${{ number_format($budget, 2) }}</span>
+    </p>
+    <p class="text-sm text-gray-400 mt-0.5">
+        Потрачено: ${{ number_format($spend, 2) }}
+    </p>
 </div>
 
 <div class="mb-8">
-    <p class="mb-2 font-bold">Доступные модели:</p>
-    <ul class="list-disc list-inside text-gray-700 flex flex-col gap-1">
-        @forelse($models as $model)
-        <li>{{ $model }}</li>
-        @empty
-        <li>Все модели (без ограничений)</li>
-        @endforelse
-    </ul>
+    <p class="mb-2 font-bold">Доступные модели</p>
+    @if(in_array('all-proxy-models', $models, true))
+        <a href="{{ route('docs.models') }}" class="text-blue-600 hover:underline">Все модели</a>
+    @elseif(empty($models))
+        <span class="text-gray-500">Нет моделей</span>
+    @else
+        <ul class="list-disc list-inside text-gray-700 flex flex-col gap-1">
+            @foreach($models as $model)
+                <li>
+                    <a href="{{ route('docs.models') }}#model-{{ hash('sha256', $model) }}" class="text-blue-600 hover:underline">{{ $model }}</a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 </div>
 @endsection
