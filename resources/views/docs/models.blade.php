@@ -17,8 +17,8 @@
                 
                 @if($model['input_cost_per_token'] !== null || $model['output_cost_per_token'] !== null)
                     <div class="flex gap-8 text-gray-600 mt-1">
-                        <span><span class="text-sm text-gray-400">Ввод</span> ${{ number_format(($model['input_cost_per_token'] ?? 0) * 1000000, 2) }} <span class="text-sm text-gray-400">за 1М токенов</span></span>
-                        <span><span class="text-sm text-gray-400">Вывод</span> ${{ number_format(($model['output_cost_per_token'] ?? 0) * 1000000, 2) }} <span class="text-sm text-gray-400">за 1М токенов</span></span>
+                        <span><span class="text-sm text-gray-400">Ввод</span> ${{ number_format(($model['input_cost_per_token'] ?? 0) * 1000000, 2) }} <span class="text-sm text-gray-400">за 10 000 токенов</span></span>
+                        <span><span class="text-sm text-gray-400">Вывод</span> ${{ number_format(($model['output_cost_per_token'] ?? 0) * 1000000, 2) }} <span class="text-sm text-gray-400">за 10 000 токенов</span></span>
                     </div>
                 @else
                     <p class="text-sm text-gray-400">Цены не указаны</p>

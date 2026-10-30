@@ -17,11 +17,11 @@
 @section('content')
 <div class="mb-8">
     <p class="text-lg">
-        Доступный остаток: <span class="font-bold text-green-600">${{ number_format($remain, 2) }}</span>
-        <span class="text-sm text-gray-400 font-normal">из ${{ number_format($budget, 2) }}</span>
+        Доступный остаток: <span class="font-bold text-green-600">${{ number_format($remain * 100, 2) }}</span>
     </p>
     <p class="text-sm text-gray-400 mt-0.5">
-        Потрачено: ${{ number_format($spend, 2) }}
+
+        Потрачено: ${{ number_format($spend * 100, 2) }}
     </p>
 </div>
 
