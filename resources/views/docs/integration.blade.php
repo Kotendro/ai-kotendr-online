@@ -29,6 +29,7 @@
         <a href="#vscode" class="text-blue-600 hover:underline">VSCode/Cline</a>
         <a href="#continue" class="text-blue-600 hover:underline">Continue.dev</a>
         <a href="#codex" class="text-blue-600 hover:underline">Codex CLI</a>
+        <a href="#pi" class="text-blue-600 hover:underline">Pi</a>
     </div>
 </div>
 
@@ -115,6 +116,25 @@ name = "Kotendr"
 base_url = "{{ $baseUrl }}"
 wire_api = "responses"
 experimental_bearer_token = "{{ $apiKey }}"</code></pre>
+    </section>
+
+    <!-- Pi -->
+    <section id="pi" class="scroll-mt-6">
+        <h2 class="text-lg font-bold mb-2">Pi</h2>
+        <p class="mb-2 text-gray-600">Для подключения модели Pi создайте файл <code>models.json</code> в настройках агента и добавьте конфигурацию:</p>
+        <pre class="bg-gray-100 p-3 overflow-x-auto"><code>{
+  "$schema": "https://pi.dev/schemas/models.schema.json",
+  "providers": {
+    "ai.kotendr": {
+      "baseUrl": "{{ $baseUrl }}",
+      "api": "openai-completions",
+      "apiKey": "{{ $apiKey }}",
+      "models": [
+        {"id": "qwen/qwen3-coder-next"}
+      ]
+    }
+  }
+}</code></pre>
     </section>
 
 </div>
