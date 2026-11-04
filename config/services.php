@@ -14,6 +14,11 @@ return [
     |
     */
 
+    'litellm' => [
+        'url' => env('LITELLM_URL'),
+        'key' => env('LITELLM_MASTER_KEY'),
+    ],
+
     'postmark' => [
         'key' => env('POSTMARK_API_KEY'),
     ],
