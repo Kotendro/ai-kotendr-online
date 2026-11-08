@@ -40,4 +40,8 @@ return [
         ],
     ],
 
+    'funpay' => [
+        'url' => env('FUNPAY_URL'),
+    ],
+
 ];

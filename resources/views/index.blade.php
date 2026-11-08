@@ -23,4 +23,14 @@
         Проверить
     </button>
 </form>
+
+<div class="mt-4">
+    @if(config('services.funpay.url'))
+        <p>
+            <a href="{{ config('services.funpay.url') }}" target="_blank" class="text-blue-600 hover:underline">
+                Купить API ключ на FunPay
+            </a>
+        </p>
+    @endif
+</div>
 @endsection
