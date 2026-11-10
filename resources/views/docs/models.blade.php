@@ -34,7 +34,10 @@
             <div class="flex flex-col gap-5">
                 @foreach($group['models'] as $model)
                     <div id="model-{{ hash('sha256', $model['model_name']) }}" class="scroll-mt-6">
-                        <p class="font-bold text-black text-base">{{ $model['model_name'] }}</p>
+                        <p
+                            class="font-bold text-black text-base cursor-pointer hover:underline"
+                            onclick="navigator.clipboard.writeText('{{ $model['model_name'] }}')">{{ $model['model_name'] }}
+                        </p>
 
                         @if($model['input_cost_per_token'] !== null || $model['output_cost_per_token'] !== null)
                             <div class="flex gap-8 text-gray-600 mt-1">
